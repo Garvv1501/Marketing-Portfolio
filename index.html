@@ -376,3 +376,312 @@ nav.scrolled{
   width:2rem;height:1px;background:var(--gold);
   margin-bottom:1.2rem;
 }
+/* CONTACT */
+#contact{background:var(--cream);}
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:6rem;margin-top:4rem;align-items:start;}
+.contact-intro p{font-size:.95rem;line-height:2;color:var(--grey);margin-bottom:2rem;}
+.contact-links{display:flex;flex-direction:column;gap:.9rem;}
+.contact-link{
+  display:flex;align-items:center;gap:1rem;
+  text-decoration:none;color:var(--grey);
+  font-size:.88rem;padding:.95rem 1.4rem;
+  border:1px solid var(--mist);transition:all .25s;
+}
+.contact-link:hover{border-color:var(--gold);color:var(--ink);background:var(--gold-pale);}
+.cl-label{
+  font-size:.6rem;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--gold);display:block;margin-bottom:.1rem;
+}
+.contact-cta{background:var(--navy);padding:3rem;}
+.contact-cta blockquote{
+  font-family:'Fraunces',serif;
+  font-size:1.5rem;font-weight:200;font-style:italic;
+  color:var(--cream);margin-bottom:2rem;line-height:1.55;
+  border-left:2px solid var(--gold);padding-left:1.5rem;
+}
+.contact-cta blockquote strong{color:var(--gold);font-weight:700;}
+ 
+/* FOOTER */
+footer{
+  background:var(--navy-mid);
+  border-top:1px solid rgba(255,255,255,.04);
+  padding:2rem 5rem;
+  display:flex;align-items:center;justify-content:space-between;
+}
+footer p{font-size:.7rem;color:rgba(255,255,255,.25);letter-spacing:.06em;}
+.footer-logo{
+  font-family:'Unbounded',sans-serif;
+  font-size:1rem;letter-spacing:.08em;color:rgba(255,255,255,.2);
+}
+.footer-logo span{color:rgba(191,155,95,.4);}
+ 
+/* ANIMATIONS */
+@keyframes fromLeft{from{opacity:0;transform:translateX(-28px);}to{opacity:1;transform:translateX(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+ 
+/* RESPONSIVE */
+@media(max-width:900px){
+  .cursor,.cursor-ring{display:none;}
+  body{cursor:auto;}
+  nav{padding:1rem 1.5rem;}
+  nav.scrolled{padding:.9rem 1.5rem;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  #hero{grid-template-columns:1fr;min-height:auto;}
+  .hero-left{padding:7rem 1.5rem 3rem;}
+  .hero-right{height:68vw;min-height:280px;}
+  .hero-stats{gap:1.5rem;flex-wrap:wrap;}
+  .section{padding:5rem 1.5rem;}
+  .projects-grid{grid-template-columns:1fr;}
+  .contact-layout{grid-template-columns:1fr;gap:3rem;}
+  footer{flex-direction:column;gap:1rem;text-align:center;padding:2rem 1.5rem;}
+}
+@media(max-width:480px){
+  .hero-name{font-size:2.8rem;}
+  .hero-btns{flex-direction:column;}
+  .btn-primary,.btn-secondary{text-align:center;justify-content:center;}
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+ 
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#skills" onclick="closeMobile()">Skills</a>
+  <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#projects" onclick="closeMobile()">Projects</a>
+  <a href="#experience" onclick="closeMobile()">Experience</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+ 
+<nav id="navbar">
+  <a href="#" class="nav-logo">GC<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact" class="hire-link">Hire Me</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMobile()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+ 
+<section id="hero">
+  <div class="hero-bg-word">GROWTH</div>
+  <div class="hero-left">
+    <span class="hero-eyebrow">Social Media Manager &amp; Marketing Strategist</span>
+    <h1 class="hero-name">Garv<br><strong>Chugh.</strong></h1>
+    <p class="hero-role">I build audiences, not just content.</p>
+    <p class="hero-bio">Based in Mohali. CS &amp; AI student who grew a LinkedIn network to 4,000+ in under 100 days. Strategy-first, data-aware, and obsessed with understanding why things grow.</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-n">4K+</span><span class="stat-l">LinkedIn Network</span></div>
+      <div class="stat"><span class="stat-n">100</span><span class="stat-l">Days to Build It</span></div>
+      <div class="stat"><span class="stat-n">13+</span><span class="stat-l">AI Certifications</span></div>
+    </div>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">See My Work &rarr;</a>
+      <a href="#contact" class="btn-secondary">Let&apos;s Talk</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="assets/garv.jpg" alt="Garv Chugh" class="hero-img"/>
+    <div class="hero-card">
+      <span class="hero-card-num">4K+</span>
+      <span class="hero-card-txt">LinkedIn in 100 Days</span>
+    </div>
+  </div>
+</section>
+ 
+<section id="skills" class="section">
+  <div class="section-inner">
+    <div class="section-tag">What I Bring</div>
+    <h2 class="section-title" style="color:var(--cream)">Skills &amp;<br><em>Expertise</em></h2>
+    <div class="skills-grid reveal">
+      <div class="skill-card">
+        <div class="skill-head">Social Media &amp; Strategy</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Content Strategy</span>
+          <span class="skill-tag">Content Calendars</span>
+          <span class="skill-tag">Campaign Planning</span>
+          <span class="skill-tag">Instagram</span>
+          <span class="skill-tag">LinkedIn Growth</span>
+          <span class="skill-tag">Reels Strategy</span>
+          <span class="skill-tag">SEO for Social</span>
+          <span class="skill-tag">Audience Engagement</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-head">Creative Production</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Canva</span>
+          <span class="skill-tag">Graphic Design</span>
+          <span class="skill-tag">Video Editing</span>
+          <span class="skill-tag">Carousel Design</span>
+          <span class="skill-tag">Short-Form Video</span>
+          <span class="skill-tag">Visual Branding</span>
+          <span class="skill-tag">Reels &amp; Shorts</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-head">AI &amp; Technical</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Generative AI</span>
+          <span class="skill-tag">Large Language Models</span>
+          <span class="skill-tag">Prompt Engineering</span>
+          <span class="skill-tag">AI Workflows</span>
+          <span class="skill-tag">HTML &amp; CSS</span>
+          <span class="skill-tag">C Programming</span>
+          <span class="skill-tag">DSA</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-head">Leadership &amp; Comms</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Team Management</span>
+          <span class="skill-tag">Public Speaking</span>
+          <span class="skill-tag">Event Coordination</span>
+          <span class="skill-tag">Community Building</span>
+          <span class="skill-tag">Peer Mentoring</span>
+          <span class="skill-tag">Stakeholder Comms</span>
+          <span class="skill-tag">Networking</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> 
+  <section id="services" class="section">
+  <div class="section-inner">
+    <div class="section-tag">What I Do</div>
+    <h2 class="section-title reveal">Services<br><em>Offered</em></h2>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-num">01</div>
+        <h3>Social Media Management</h3>
+        <p>End-to-end management across Instagram and LinkedIn — content calendars, daily posting, community engagement, and weekly analytics reporting that actually informs the next move.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">02</div>
+        <h3>Content Strategy &amp; Creation</h3>
+        <p>Audience-first content systems built on data, not instinct. Reels, carousels, captions, hooks — every piece engineered to stop the scroll and compound reach over time.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">03</div>
+        <h3>Brand Audit &amp; Competitor Analysis</h3>
+        <p>A clear-eyed breakdown of what's working, what's leaking engagement, and exactly where your brand sits vs. the competition — followed by a concrete action plan.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">04</div>
+        <h3>Campaign Planning &amp; Launch</h3>
+        <p>Full campaign blueprints from brief to execution — messaging pillars, platform-specific assets, posting schedules, and post-launch analysis to inform what comes next.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">05</div>
+        <h3>LinkedIn Personal Branding</h3>
+        <p>Build a LinkedIn presence that compounds. Profile optimisation, content pillars, hook frameworks, and a posting system proven to grow an audience — I hit 4,000 followers in under 100 days doing exactly this.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">06</div>
+        <h3>AI-Powered Content Workflows</h3>
+        <p>Faster research, smarter content ideation, and leaner production pipelines using AI tools. I use Generative AI not as a shortcut but as a force multiplier for quality and output.</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<section id="projects" class="section">
+  <div class="section-inner">
+    <div class="section-tag">Portfolio</div>
+    <h2 class="section-title reveal">Featured<br><em>Projects</em></h2>
+    <div class="projects-grid reveal">
+      <a href="projects/brand-audit.html" class="proj-card">
+        <span class="proj-num">Project 01 / 04</span>
+        <div class="proj-tags">
+          <span class="proj-tag">Brand Audit</span>
+          <span class="proj-tag">Instagram &amp; X</span>
+        </div>
+        <h3>Swiggy&apos;s Social Strategy: Strengths, Gaps &amp; What I&apos;d Fix</h3>
+        <p>A deep audit of Swiggy&apos;s Instagram and X presence — content pillars, engagement patterns, timing gaps, and 5 specific recommendations to close the performance gap.</p>
+        <span class="proj-arrow">View Case Study &rarr;</span>
+      </a>
+      <a href="projects/campaign.html" class="proj-card">
+        <span class="proj-num">Project 02 / 04</span>
+        <div class="proj-tags">
+          <span class="proj-tag">Campaign Strategy</span>
+          <span class="proj-tag">Product Launch</span>
+        </div>
+        <h3>If I Were CMO of boAt: Launching boAt Studio</h3>
+        <p>A full 4-week launch campaign for boAt&apos;s creator tools vertical — brand concept, platform strategy, messaging pillars, and creator activation rollout.</p>
+        <span class="proj-arrow">View Case Study &rarr;</span>
+      </a>
+      <a href="projects/content-calendar.html" class="proj-card">
+        <span class="proj-num">Project 03 / 04</span>
+        <div class="proj-tags">
+          <span class="proj-tag">Content Strategy</span>
+          <span class="proj-tag">10-Day Calendar</span>
+        </div>
+        <h3>10 Days of Intentional Content for Noise Coffee</h3>
+        <p>A complete day-by-day Instagram content plan for a D2C coffee brand — every post mapped to a format, a pillar, a posting window, and a measurable outcome.</p>
+        <span class="proj-arrow">View Case Study &rarr;</span>
+      </a>
+      <a href="projects/competitor-analysis.html" class="proj-card">
+        <span class="proj-num">Project 04 / 04</span>
+        <div class="proj-tags">
+          <span class="proj-tag">Competitor Analysis</span>
+          <span class="proj-tag">Indian D2C</span>
+        </div>
+        <h3>Who&apos;s Winning Indian Skincare on Instagram?</h3>
+        <p>Dot &amp; Key vs. Foxtale vs. WOW Skin Science — scored across six dimensions with a clear verdict, supporting evidence, and the lessons every brand should take from it.</p>
+        <span class="proj-arrow">View Case Study &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+ 
+<section id="experience" class="section">
+  <div class="section-inner">
+    <div class="section-tag">Track Record</div>
+    <h2 class="section-title reveal">Work<br><em>Experience</em></h2>
+    <div class="timeline reveal">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">April 2026 – Present</div>
+        <div class="tl-co">Organo Linen Company &middot; Remote</div>
+        <div class="tl-role">Social Media Intern</div>
+        <ul class="tl-points">
+          <li>Developing and executing content strategies across Instagram and LinkedIn — increasing brand visibility and measurable audience engagement</li>
+          <li>Designing graphics, carousels, and short-form video content in Canva to support product launches and seasonal brand campaigns</li>
+          <li>Managing the full content calendar — scheduling, publishing, and monitoring performance metrics to optimise reach, impressions, and follower growth</li>
+          <li>Collaborating with the brand team to align content with company identity, campaign goals, and target audience preferences</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">2025 – Present</div>
+        <div class="tl-co">Self-Directed &middot; Chandigarh University</div>
+        <div class="tl-role">LinkedIn Personal Branding</div>
+        <ul class="tl-points">
+          <li>Built a LinkedIn network of <strong>4,000+ connections and followers within 100 days</strong> of starting undergraduate study — entirely through organic content and strategic engagement</li>
+          <li>Developed content pillars around AI, marketing, and student leadership — maintaining consistent posting cadence and voice across all content</li>
+          <li>Demonstrated personal branding ability that most professionals take years to develop — starting before the first year of university was complete</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Class 11, 2023–2024</div>
+        <div class="tl-co">Future Sports Academy</div>
+        <div class="tl-role">Cricket Team Captain</div>
+        <ul class="tl-points">
+          <li>Led, motivated, and managed a team of 15+ young athletes across practice sessions and competitive tournaments</li>
+          <li>Organised schedules, coordinated tournament logistics, and resolved team conflicts while maintaining high performance standards</li>
+          <li>Mentored junior players on technique and mindset — demonstrating the ability to coach and develop peers toward collective goals</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
