@@ -685,3 +685,116 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.25);letter-spacing:.06em;}
     </div>
   </div>
 </section>
+<section id="why" class="section">
+  <div class="section-inner">
+    <div class="section-tag">The Difference</div>
+    <h2 class="section-title reveal" style="color:var(--cream)">Why Work<br>With <em>Me?</em></h2>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-marker"></div>
+        <div class="why-head">Results Before Credentials</div>
+        <p>I didn&apos;t wait for a degree or a job title to prove I could grow an audience. 4,000+ LinkedIn followers in 100 days as a first-year student is the proof of concept.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-marker"></div>
+        <div class="why-head">AI as a Competitive Edge</div>
+        <p>I hold 13+ industry certifications in Generative AI, LLMs, and prompt engineering — and I apply them to content workflows, research, and ideation in real time. Not a buzzword — a daily tool.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-marker"></div>
+        <div class="why-head">Strategy-First Thinking</div>
+        <p>I don&apos;t post for the sake of posting. Every piece of content connects to a goal — reach, saves, engagement, or conversion. Content without strategy is just noise.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-marker"></div>
+        <div class="why-head">Leader, Not Just a Contributor</div>
+        <p>I&apos;ve led teams as a cricket captain, coordinated multi-person events on campus, and mentored peers. I know how to own a project, not just a task.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-marker"></div>
+        <div class="why-head">Confident Communicator</div>
+        <p>Comfortable in front of an audience, in a brief, or on a call. Public speaking, cross-functional collaboration, and stakeholder communication are all part of the skillset.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-marker"></div>
+        <div class="why-head">Built for Remote</div>
+        <p>My internship experience is fully remote. I communicate proactively, deliver on time, and stay ahead of deadlines without needing to be managed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<section id="contact" class="section">
+  <div class="section-inner">
+    <div class="section-tag">Let&apos;s Connect</div>
+    <h2 class="section-title reveal">Get In<br><em>Touch</em></h2>
+    <div class="contact-layout">
+      <div class="contact-intro reveal">
+        <p>Open to internships, part-time roles, freelance projects, and brand collaborations. If you&apos;re building something and need someone who actually understands what makes social media work — let&apos;s talk.</p>
+        <div class="contact-links">
+          <a href="tel:+917777923460" class="contact-link">
+            <div><span class="cl-label">Phone</span>+91 7777 923 460</div>
+          </a>
+          <a href="mailto:garvv.chugh@email.com" class="contact-link">
+            <div><span class="cl-label">Email</span>garvv.chugh@email.com</div>
+          </a>
+          <a href="https://www.linkedin.com/in/garv-chugh-493657330/" target="_blank" class="contact-link">
+            <div><span class="cl-label">LinkedIn</span>linkedin.com/in/garv-chugh-493657330</div>
+          </a>
+        </div>
+      </div>
+      <div class="contact-cta reveal">
+        <div class="contact-cta">
+          <blockquote>"The best time to build an audience was yesterday. The second best time is right now — with the <strong>right strategy.</strong>"</blockquote>
+          <a href="mailto:garvv.chugh@email.com" class="btn-primary">Start a Conversation &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<footer>
+  <span class="footer-logo">GC<span>.</span></span>
+  <p>&copy; 2026 Garv Chugh &middot; Built with intention.</p>
+  <p>Mohali, Punjab</p>
+</footer>
+ 
+<script>
+function toggleMobile(){
+  const m=document.getElementById('mobileMenu'),b=document.getElementById('hamburger');
+  m.classList.toggle('open');b.classList.toggle('open');
+  document.body.style.overflow=m.classList.contains('open')?'hidden':'';
+}
+function closeMobile(){
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+  document.body.style.overflow='';
+}
+const isTouch=('ontouchstart' in window)||(navigator.maxTouchPoints>0);
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+if(!isTouch){
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+  (function anim(){
+    rx+=(mx-rx)*.16;ry+=(my-ry)*.16;
+    cur.style.left=mx-4+'px';cur.style.top=my-4+'px';
+    ring.style.left=rx-14+'px';ring.style.top=ry-14+'px';
+    requestAnimationFrame(anim);
+  })();
+  document.querySelectorAll('a,button,.proj-card,.service-card').forEach(el=>{
+    el.addEventListener('mouseenter',()=>cur.classList.add('grow'));
+    el.addEventListener('mouseleave',()=>cur.classList.remove('grow'));
+  });
+}
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>60);
+});
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+const tlObs=new IntersectionObserver(es=>{
+  es.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),i*140);});
+},{threshold:.05});
+document.querySelectorAll('.tl-item').forEach(el=>tlObs.observe(el));
+</script>
+</body>
+</html>
