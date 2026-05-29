@@ -1,1 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Competitor Analysis: Indian Skincare — Aryan Mehta</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+<style>
+:root{--navy:#0B1221;--navy-mid:#121D33;--navy-light:#1C2E50;--gold:#C9A84C;--gold-light:#E2C97E;--gold-pale:#F5EDD4;--cream:#FAF8F3;--off:#F0EDE5;--mist:#E8E4DC;--ink:#1A1A2E;--grey:#7A7A8C;--grey-light:#BCBCCC;--win:#2D6A4F;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden;}
+.top-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:rgba(11,18,33,.95);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,168,76,.12);}
+.back-link{display:flex;align-items:center;gap:.6rem;text-decoration:none;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);transition:color .2s;}
+.back-link:hover{color:var(--gold);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.1em;color:var(--cream);text-decoration:none;}
+.nav-logo span{color:var(--gold);}
+.proj-badge{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.35);padding:.3rem .9rem;}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:24px;height:1.5px;background:var(--cream);transition:all .3s;transform-origin:center;}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--navy);z-index:150;flex-direction:column;align-items:center;justify-content:center;gap:2rem;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--cream);text-decoration:none;}
 
+.proj-hero{
+  min-height:65vh;background:var(--navy);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:10rem 5rem 5rem;position:relative;overflow:hidden;
+}
+.proj-hero::before{content:'VERSUS';position:absolute;right:-2rem;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:18vw;color:rgba(255,255,255,.02);white-space:nowrap;pointer-events:none;letter-spacing:.05em;}
+.hero-tag{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;opacity:0;animation:fadeUp .7s .2s forwards;display:flex;align-items:center;gap:1rem;}
+.hero-tag::before{content:'';display:inline-block;width:2rem;height:1px;background:var(--gold);}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5.5vw,5rem);font-weight:300;line-height:.95;color:var(--cream);letter-spacing:-.02em;margin-bottom:1rem;opacity:0;animation:fadeUp .7s .4s forwards;}
+.hero-title em{color:var(--gold);font-style:italic;font-weight:700;}
+.hero-sub{font-size:.95rem;color:rgba(255,255,255,.45);max-width:560px;margin-bottom:2rem;opacity:0;animation:fadeUp .7s .55s forwards;line-height:1.7;}
+.hero-meta{display:flex;gap:3rem;opacity:0;animation:fadeUp .7s .7s forwards;}
+.meta-item{display:flex;flex-direction:column;}
+.meta-label{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:.3rem;}
+.meta-value{font-size:.88rem;color:rgba(255,255,255,.7);font-weight:500;}
+
+.proj-content{max-width:1000px;margin:0 auto;padding:6rem 4rem;}
+.content-block{margin-bottom:5rem;}
+.block-tag{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:.8rem;}
+.block-tag::before{content:'';display:inline-block;width:1.5rem;height:1px;background:var(--gold);}
+.block-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:300;margin-bottom:1.5rem;letter-spacing:-.01em;}
+.block-title em{color:var(--gold);font-style:italic;font-weight:700;}
+.block-body{font-size:.93rem;line-height:1.95;color:#444;}
+.block-body p{margin-bottom:1.2rem;}
+.block-body strong{color:var(--ink);}
+
+/* BRAND CARDS */
+.brand-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin:2.5rem 0;}
+.brand-card{padding:2.5rem;border:2px solid var(--mist);position:relative;transition:all .3s;}
+.brand-card.winner{border-color:var(--gold);}
+.brand-card.winner::after{content:'WINNER';position:absolute;top:-12px;right:1rem;background:var(--gold);color:var(--navy);font-size:.55rem;letter-spacing:.1em;padding:.25rem .7rem;font-weight:700;}
+.brand-name{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;margin-bottom:.3rem;}
+.brand-niche{font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--grey);margin-bottom:1.5rem;}
+.brand-stat{display:flex;justify-content:space-between;align-items:baseline;padding:.5rem 0;border-bottom:1px solid var(--off);}
+.brand-stat:last-of-type{border-bottom:none;}
+.stat-l{font-size:.72rem;color:var(--grey);}
+.stat-v{font-size:.8rem;font-weight:700;color:var(--ink);}
+.stat-v.good{color:#2d6a4f;}
+.stat-v.mid{color:#b07d2c;}
+.stat-v.bad{color:#c0392b;}
+
+/* COMPARE TABLE */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--mist);}
+.compare-tbl{width:100%;border-collapse:collapse;min-width:580px;}
+.compare-tbl th{background:var(--navy);color:var(--cream);font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;padding:1rem 1.2rem;text-align:left;}
+.compare-tbl td{padding:1rem 1.2rem;border-bottom:1px solid var(--off);font-size:.84rem;vertical-align:top;}
+.compare-tbl tr:hover td{background:var(--gold-pale);}
+.score{font-weight:700;font-size:.9rem;}
+.s5{color:#2d6a4f;}.s4{color:#52b788;}.s3{color:#b07d2c;}.s2{color:#e07b39;}.s1{color:#c0392b;}
+.tbl-hint{font-size:.62rem;letter-spacing:.08em;color:var(--grey);margin-bottom:.5rem;display:none;}
+
+/* VERDICT */
+.verdict{background:var(--navy);color:var(--cream);padding:3rem;margin:2.5rem 0;position:relative;overflow:hidden;}
+.verdict::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--gold);}
+.verdict h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;margin-bottom:1rem;color:var(--cream);}
+.verdict p{font-size:.9rem;line-height:1.85;opacity:.85;max-width:700px;}
+
+/* LESSONS */
+.lessons{display:flex;flex-direction:column;gap:1px;margin:2rem 0;}
+.lesson{display:flex;gap:2rem;padding:1.5rem 2rem;background:var(--off);align-items:flex-start;transition:background .2s;}
+.lesson:hover{background:var(--gold-pale);}
+.lesson-num{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--gold);line-height:1;flex-shrink:0;letter-spacing:.05em;}
+.lesson-text h4{font-weight:600;font-size:.93rem;margin-bottom:.4rem;}
+.lesson-text p{font-size:.84rem;line-height:1.75;color:var(--grey);}
+
+.back-cta{background:var(--navy);padding:5rem 4rem;text-align:center;}
+.back-cta p{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;font-style:italic;color:var(--cream);margin-bottom:2rem;}
+.btn-gold{display:inline-flex;align-items:center;gap:.5rem;background:var(--gold);color:var(--navy);padding:.85rem 2rem;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .25s;}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(25px);}to{opacity:1;transform:translateY(0);}}
+.reveal{opacity:0;transform:translateY(30px);transition:all .6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+@media(max-width:768px){
+  .top-nav{padding:1rem 1.5rem;}.proj-badge{display:none;}.hamburger{display:flex;}
+  .proj-hero{padding:8rem 1.5rem 4rem;min-height:auto;}.hero-title{font-size:2rem;}
+  .hero-sub{font-size:.88rem;}.hero-meta{flex-wrap:wrap;gap:1rem;}
+  .proj-content{padding:3rem 1.2rem;}.brand-cards{grid-template-columns:1fr;}
+  .tbl-hint{display:block;}.verdict{padding:2rem 1.5rem;}
+  .verdict h3{font-size:1.2rem;}.lesson{flex-direction:column;gap:.5rem;padding:1.2rem 1.5rem;}
+  .lesson-num{font-size:1.8rem;}.back-cta{padding:3rem 1.5rem;}
+}
+@media(max-width:480px){.hero-title{font-size:1.8rem;}}
+</style>
+</head>
+<body>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../index.html">← Home</a>
+  <a href="../index.html#projects">All Projects</a>
+  <a href="../index.html#contact">Contact</a>
+</div>
+<nav class="top-nav">
+  <a href="../index.html" class="back-link">← Back</a>
+  <a href="../index.html" class="nav-logo">AM<span>.</span></a>
+  <span class="proj-badge">Project 04 / 04</span>
+  <button class="hamburger" id="hamburger" onclick="toggleMobile()" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<header class="proj-hero">
+  <span class="hero-tag">Competitor Analysis · Indian D2C Skincare · Instagram</span>
+  <h1 class="hero-title">Who's <em>Winning</em><br>Indian Skincare<br>on Instagram?</h1>
+  <p class="hero-sub">Dot & Key vs. Foxtale vs. WOW Skin Science — three competing brands, one platform, and a decisive winner. Here's who's doing it right and the data to back it.</p>
+  <div class="hero-meta">
+    <div class="meta-item"><span class="meta-label">Brands</span><span class="meta-value">Dot & Key, Foxtale, WOW</span></div>
+    <div class="meta-item"><span class="meta-label">Platform</span><span class="meta-value">Instagram</span></div>
+    <div class="meta-item"><span class="meta-label">Type</span><span class="meta-value">Competitor Analysis</span></div>
+    <div class="meta-item"><span class="meta-label">By</span><span class="meta-value">Aryan Mehta</span></div>
+  </div>
+</header>
+
+<main class="proj-content">
+
+  <div class="content-block reveal">
+    <div class="block-tag">The Setup</div>
+    <h2 class="block-title">Why These <em>Three?</em></h2>
+    <div class="block-body">
+      <p>Dot & Key, Foxtale, and WOW Skin Science are three of India's most visible D2C skincare brands — all targeting roughly the same audience (18–34, skincare-aware, digitally native, value-conscious), all investing heavily in Instagram. But their approaches are completely different. And so are their results.</p>
+      <p>I analysed 30 days of Instagram content across 6 dimensions: content variety, posting frequency, engagement rate, visual identity, community management, and creator strategy. The findings were clearer than I expected.</p>
+    </div>
+  </div>
+
+  <div class="brand-cards reveal">
+    <div class="brand-card">
+      <div class="brand-name">WOW Skin</div>
+      <div class="brand-niche">Natural / Clean / Mass Market</div>
+      <div class="brand-stat"><span class="stat-l">Instagram Followers</span><span class="stat-v">1.8M+</span></div>
+      <div class="brand-stat"><span class="stat-l">Avg Engagement Rate</span><span class="stat-v bad">~0.6%</span></div>
+      <div class="brand-stat"><span class="stat-l">Posts / Month</span><span class="stat-v">25–30</span></div>
+      <div class="brand-stat"><span class="stat-l">Reel Frequency</span><span class="stat-v mid">Medium</span></div>
+      <div class="brand-stat"><span class="stat-l">Comment Sentiment</span><span class="stat-v mid">Mixed</span></div>
+    </div>
+    <div class="brand-card winner">
+      <div class="brand-name">Foxtale</div>
+      <div class="brand-niche">Science-Backed / Ingredient-Focused / Gen Z</div>
+      <div class="brand-stat"><span class="stat-l">Instagram Followers</span><span class="stat-v">320K+</span></div>
+      <div class="brand-stat"><span class="stat-l">Avg Engagement Rate</span><span class="stat-v good">~4.1%</span></div>
+      <div class="brand-stat"><span class="stat-l">Posts / Month</span><span class="stat-v">14–18</span></div>
+      <div class="brand-stat"><span class="stat-l">Reel Frequency</span><span class="stat-v good">High</span></div>
+      <div class="brand-stat"><span class="stat-l">Comment Sentiment</span><span class="stat-v good">Positive</span></div>
+    </div>
+    <div class="brand-card">
+      <div class="brand-name">Dot & Key</div>
+      <div class="brand-niche">Playful / Colourful / Young Women</div>
+      <div class="brand-stat"><span class="stat-l">Instagram Followers</span><span class="stat-v">750K+</span></div>
+      <div class="brand-stat"><span class="stat-l">Avg Engagement Rate</span><span class="stat-v mid">~1.8%</span></div>
+      <div class="brand-stat"><span class="stat-l">Posts / Month</span><span class="stat-v">20–26</span></div>
+      <div class="brand-stat"><span class="stat-l">Reel Frequency</span><span class="stat-v mid">Medium</span></div>
+      <div class="brand-stat"><span class="stat-l">Comment Sentiment</span><span class="stat-v good">Positive</span></div>
+    </div>
+  </div>
+
+  <div class="content-block reveal">
+    <div class="block-tag">Head-to-Head Breakdown</div>
+    <h2 class="block-title">Scoring <em>Each Brand</em></h2>
+    <p class="tbl-hint">← Scroll to see full table →</p>
+    <div class="tbl-wrap">
+    <table class="compare-tbl">
+      <thead>
+        <tr><th>Dimension</th><th>WOW Skin Science</th><th>Foxtale</th><th>Dot & Key</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Visual Consistency</strong><br><span style="color:var(--grey);font-size:.76rem">Grid aesthetic, brand recognition</span></td>
+          <td><span class="score s2">2/5</span><br><span style="font-size:.76rem;color:var(--grey)">Inconsistent palette, cluttered layouts</span></td>
+          <td><span class="score s5">5/5</span><br><span style="font-size:.76rem;color:var(--grey)">Clean, clinical, instantly recognisable from one post</span></td>
+          <td><span class="score s4">4/5</span><br><span style="font-size:.76rem;color:var(--grey)">Cohesive pastel palette, playful but consistent</span></td>
+        </tr>
+        <tr>
+          <td><strong>Content Variety</strong><br><span style="color:var(--grey);font-size:.76rem">Format and pillar diversity</span></td>
+          <td><span class="score s2">2/5</span><br><span style="font-size:.76rem;color:var(--grey)">Heavy on product ads, low on editorial value</span></td>
+          <td><span class="score s5">5/5</span><br><span style="font-size:.76rem;color:var(--grey)">Education, myths, routines, ingredients, UGC</span></td>
+          <td><span class="score s4">4/5</span><br><span style="font-size:.76rem;color:var(--grey)">Good variety — trend content sometimes arrives late</span></td>
+        </tr>
+        <tr>
+          <td><strong>Engagement Quality</strong><br><span style="color:var(--grey);font-size:.76rem">Comments, saves, shares</span></td>
+          <td><span class="score s1">1/5</span><br><span style="font-size:.76rem;color:var(--grey)">High follower count, comments mostly spam or bots</span></td>
+          <td><span class="score s5">5/5</span><br><span style="font-size:.76rem;color:var(--grey)">Genuine questions, skincare conversations, saves</span></td>
+          <td><span class="score s3">3/5</span><br><span style="font-size:.76rem;color:var(--grey)">Good but engagement spikes mainly on giveaway posts</span></td>
+        </tr>
+        <tr>
+          <td><strong>Community Management</strong><br><span style="color:var(--grey);font-size:.76rem">Comment replies, responsiveness</span></td>
+          <td><span class="score s1">1/5</span><br><span style="font-size:.76rem;color:var(--grey)">Comments go unanswered almost entirely</span></td>
+          <td><span class="score s5">5/5</span><br><span style="font-size:.76rem;color:var(--grey)">Detailed, helpful replies that build real trust</span></td>
+          <td><span class="score s4">4/5</span><br><span style="font-size:.76rem;color:var(--grey)">Friendly, on-brand replies, good community feel</span></td>
+        </tr>
+        <tr>
+          <td><strong>Creator Strategy</strong><br><span style="color:var(--grey);font-size:.76rem">Influencer quality and alignment</span></td>
+          <td><span class="score s2">2/5</span><br><span style="font-size:.76rem;color:var(--grey)">Celebrity-heavy, feels like TV advertising</span></td>
+          <td><span class="score s4">4/5</span><br><span style="font-size:.76rem;color:var(--grey)">Micro creators with genuine skincare communities</span></td>
+          <td><span class="score s4">4/5</span><br><span style="font-size:.76rem;color:var(--grey)">Creator content feels authentic, not scripted</span></td>
+        </tr>
+        <tr>
+          <td><strong>SEO & Discoverability</strong><br><span style="color:var(--grey);font-size:.76rem">Hashtags, captions, search presence</span></td>
+          <td><span class="score s2">2/5</span><br><span style="font-size:.76rem;color:var(--grey)">Generic hashtag strategy, no keyword focus</span></td>
+          <td><span class="score s5">5/5</span><br><span style="font-size:.76rem;color:var(--grey)">Ingredient-specific tags, keyword-rich captions</span></td>
+          <td><span class="score s3">3/5</span><br><span style="font-size:.76rem;color:var(--grey)">Decent but inconsistent hashtag strategy</span></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="verdict reveal">
+    <h3>The Verdict: Foxtale Wins — and the Reason is Simple</h3>
+    <p>Foxtale treats Instagram as an <strong>education platform first, advertising platform second.</strong> Their content makes people feel smarter about their skin, their ingredients, their routine. That creates trust. Trust creates saves. Saves signal to the algorithm. The algorithm amplifies. Amplification creates awareness. Awareness creates sales. The entire funnel flows from one clear strategic choice: be genuinely useful. WOW has more followers but far less influence. Dot & Key has personality but not the depth. Foxtale has built a social presence that doesn't just sell products — it owns a category.</p>
+  </div>
+
+  <div class="content-block reveal">
+    <div class="block-tag">What Brands Can Learn</div>
+    <h2 class="block-title">Key <em>Lessons</em></h2>
+    <div class="lessons">
+      <div class="lesson">
+        <span class="lesson-num">01</span>
+        <div class="lesson-text">
+          <h4>Engagement rate beats follower count, every time</h4>
+          <p>WOW has 5x more followers than Foxtale and roughly 7x lower engagement. A smaller, genuinely engaged audience converts at higher rates and costs less to maintain and grow.</p>
+        </div>
+      </div>
+      <div class="lesson">
+        <span class="lesson-num">02</span>
+        <div class="lesson-text">
+          <h4>Education earns loyalty that promotion can't buy</h4>
+          <p>When a brand teaches you something useful, you trust them with your purchase decision. Foxtale's ingredient-education content creates brand equity that no discount carousel can replicate.</p>
+        </div>
+      </div>
+      <div class="lesson">
+        <span class="lesson-num">03</span>
+        <div class="lesson-text">
+          <h4>Visual identity isn't aesthetic — it's recognition</h4>
+          <p>A brand should be identifiable from a single post without seeing the username. Foxtale nails this. WOW doesn't. At scale — and in a feed full of competitors — that recognition gap is massive.</p>
+        </div>
+      </div>
+      <div class="lesson">
+        <span class="lesson-num">04</span>
+        <div class="lesson-text">
+          <h4>Replying to comments is a growth strategy</h4>
+          <p>A comment reply takes 10 seconds, signals to the algorithm that the post is generating conversation, and shows real humans that the brand actually listens. WOW's silence in their comments is a missed compounding opportunity every single day.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="back-cta">
+  <p>"Winning on social is a strategy problem, not a budget problem."</p>
+  <a href="../index.html#projects" class="btn-gold">← See All Projects</a>
+</div>
+
+<script>
+function toggleMobile(){const m=document.getElementById('mobileMenu'),b=document.getElementById('hamburger');m.classList.toggle('open');b.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';}
+function closeMobile(){document.getElementById('mobileMenu').classList.remove('open');document.getElementById('hamburger').classList.remove('open');document.body.style.overflow='';}
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
