@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Content Calendar: Noise Coffee — Aryan Mehta</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+<style>
+:root{--navy:#0B1221;--navy-mid:#121D33;--navy-light:#1C2E50;--gold:#C9A84C;--gold-light:#E2C97E;--gold-pale:#F5EDD4;--cream:#FAF8F3;--off:#F0EDE5;--mist:#E8E4DC;--ink:#1A1A2E;--grey:#7A7A8C;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden;}
+.top-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:rgba(11,18,33,.95);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,168,76,.12);}
+.back-link{display:flex;align-items:center;gap:.6rem;text-decoration:none;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);transition:color .2s;}
+.back-link:hover{color:var(--gold);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.1em;color:var(--cream);text-decoration:none;}
+.nav-logo span{color:var(--gold);}
+.proj-badge{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.35);padding:.3rem .9rem;}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:24px;height:1.5px;background:var(--cream);transition:all .3s;transform-origin:center;}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--navy);z-index:150;flex-direction:column;align-items:center;justify-content:center;gap:2rem;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--cream);text-decoration:none;}
+
+.proj-hero{
+  min-height:65vh;background:var(--off);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:10rem 5rem 5rem;position:relative;overflow:hidden;
+  border-bottom:3px solid var(--gold);
+}
+.proj-hero::before{content:'CONTENT';position:absolute;right:-2rem;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:18vw;color:rgba(0,0,0,.04);white-space:nowrap;pointer-events:none;letter-spacing:.05em;}
+.hero-tag{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;opacity:0;animation:fadeUp .7s .2s forwards;display:flex;align-items:center;gap:1rem;}
+.hero-tag::before{content:'';display:inline-block;width:2rem;height:1px;background:var(--gold);}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5.5vw,5rem);font-weight:300;line-height:.95;color:var(--ink);letter-spacing:-.02em;margin-bottom:1rem;opacity:0;animation:fadeUp .7s .4s forwards;}
+.hero-title em{color:var(--gold);font-style:italic;font-weight:700;}
+.hero-sub{font-size:.95rem;color:var(--grey);max-width:560px;margin-bottom:2rem;opacity:0;animation:fadeUp .7s .55s forwards;line-height:1.7;}
+.hero-meta{display:flex;gap:3rem;opacity:0;animation:fadeUp .7s .7s forwards;}
+.meta-item{display:flex;flex-direction:column;}
+.meta-label{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--grey);margin-bottom:.3rem;}
+.meta-value{font-size:.88rem;color:var(--ink);font-weight:600;}
+
+.proj-content{max-width:960px;margin:0 auto;padding:6rem 4rem;}
+.content-block{margin-bottom:5rem;}
+.block-tag{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:.8rem;}
+.block-tag::before{content:'';display:inline-block;width:1.5rem;height:1px;background:var(--gold);}
+.block-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:300;margin-bottom:1.5rem;letter-spacing:-.01em;}
+.block-title em{color:var(--gold);font-style:italic;font-weight:700;}
+.block-body{font-size:.93rem;line-height:1.95;color:#444;}
+.block-body p{margin-bottom:1.2rem;}
+.block-body strong{color:var(--ink);}
+
+/* CALENDAR */
+.cal-header{display:grid;grid-template-columns:75px 1fr 1fr 130px 75px;gap:0;background:var(--navy);padding:1rem 1.5rem;margin-top:2rem;}
+.cal-head{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);}
+.cal-row{display:grid;grid-template-columns:75px 1fr 1fr 130px 75px;gap:0;padding:1.2rem 1.5rem;border-bottom:1px solid var(--off);transition:background .2s;align-items:start;}
+.cal-row:hover{background:var(--gold-pale);}
+.cal-day{font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.05em;color:var(--gold);padding-top:.1rem;line-height:1.3;}
+.cal-format{display:inline-block;font-size:.57rem;letter-spacing:.06em;text-transform:uppercase;padding:.2rem .6rem;margin-bottom:.4rem;}
+.f-reel{background:var(--navy);color:var(--gold);}
+.f-carousel{background:var(--ink);color:var(--cream);}
+.f-story{background:var(--mist);color:var(--ink);}
+.f-static{background:var(--off);color:var(--grey);border:1px solid var(--mist);}
+.cal-title{font-weight:600;font-size:.87rem;margin-bottom:.3rem;}
+.cal-desc{font-size:.78rem;color:var(--grey);line-height:1.5;}
+.cal-goal{font-size:.72rem;color:var(--grey);}
+.cal-goal strong{color:var(--gold);font-family:'DM Sans',sans-serif;font-size:.65rem;display:block;margin-bottom:.2rem;text-transform:uppercase;letter-spacing:.06em;}
+.cal-time{font-family:'DM Sans',sans-serif;font-size:.65rem;color:var(--grey);}
+.cal-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.cal-inner{min-width:600px;}
+.scroll-hint{font-size:.62rem;letter-spacing:.08em;color:var(--grey);margin-bottom:.5rem;display:none;}
+
+/* STRATEGY NOTES */
+.strat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:2rem 0;}
+.strat-card{padding:2rem;background:var(--off);border-top:2px solid var(--gold);}
+.strat-card h4{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:700;margin-bottom:.8rem;}
+.strat-card p{font-size:.84rem;line-height:1.75;color:#555;}
+
+.back-cta{background:var(--navy);padding:5rem 4rem;text-align:center;}
+.back-cta p{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;font-style:italic;color:var(--cream);margin-bottom:2rem;}
+.btn-gold{display:inline-flex;align-items:center;gap:.5rem;background:var(--gold);color:var(--navy);padding:.85rem 2rem;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .25s;}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(25px);}to{opacity:1;transform:translateY(0);}}
+.reveal{opacity:0;transform:translateY(30px);transition:all .6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+@media(max-width:768px){
+  .top-nav{padding:1rem 1.5rem;}.proj-badge{display:none;}.hamburger{display:flex;}
+  .proj-hero{padding:8rem 1.5rem 4rem;min-height:auto;}.hero-title{font-size:2.2rem;}
+  .hero-sub{font-size:.88rem;}.hero-meta{flex-wrap:wrap;gap:1rem;}
+  .proj-content{padding:3rem 1.2rem;}.strat-grid{grid-template-columns:1fr;}
+  .cal-header{grid-template-columns:65px 1fr;}.cal-row{grid-template-columns:65px 1fr;}
+  .cal-head:nth-child(n+3),.cal-row>*:nth-child(n+3){display:none;}
+  .scroll-hint{display:block;}.back-cta{padding:3rem 1.5rem;}
+}
+</style>
+</head>
+<body>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../index.html">← Home</a>
+  <a href="../index.html#projects">All Projects</a>
+  <a href="../index.html#contact">Contact</a>
+</div>
+<nav class="top-nav">
+  <a href="../index.html" class="back-link">← Back</a>
+  <a href="../index.html" class="nav-logo">AM<span>.</span></a>
+  <span class="proj-badge">Project 03 / 04</span>
+  <button class="hamburger" id="hamburger" onclick="toggleMobile()" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<header class="proj-hero">
+  <span class="hero-tag">Content Strategy · 10-Day Plan · Instagram</span>
+  <h1 class="hero-title">10 Days of<br><em>Intentional</em> Content.</h1>
+  <p class="hero-sub">A full content calendar for Noise Coffee — every post mapped to a format, a pillar, and a measurable outcome. Not just what to post, but exactly why, when, and what success looks like.</p>
+  <div class="hero-meta">
+    <div class="meta-item"><span class="meta-label">Brand</span><span class="meta-value">Noise Coffee India</span></div>
+    <div class="meta-item"><span class="meta-label">Platform</span><span class="meta-value">Instagram</span></div>
+    <div class="meta-item"><span class="meta-label">Duration</span><span class="meta-value">10 Days</span></div>
+    <div class="meta-item"><span class="meta-label">By</span><span class="meta-value">Aryan Mehta</span></div>
+  </div>
+</header>
+
+<main class="proj-content">
+
+  <div class="content-block reveal">
+    <div class="block-tag">Brand Context</div>
+    <h2 class="block-title">Why <em>Noise Coffee?</em></h2>
+    <div class="block-body">
+      <p>Noise Coffee is a D2C specialty coffee brand targeting urban millennials and Gen Z who take their coffee seriously — cold brew pouches, single-origin beans, and a strong café aesthetic. Their product is excellent. Their Instagram plays it safe.</p>
+      <p>The feed is visually beautiful but strategically passive — lots of product shots, not enough story. This 10-day plan is built on 4 pillars: <strong>Education</strong> (coffee knowledge, brewing methods), <strong>Lifestyle</strong> (coffee as identity and ritual), <strong>Product</strong> (showcase + conversion), and <strong>Community</strong> (UGC, engagement plays). Every post has a job.</p>
+    </div>
+  </div>
+
+  <div class="content-block reveal">
+    <div class="block-tag">The Calendar</div>
+    <h2 class="block-title">Day-by-Day <em>Breakdown</em></h2>
+    <p class="scroll-hint">← Scroll to see full table →</p>
+    <div class="cal-scroll">
+    <div class="cal-inner">
+    <div class="cal-header">
+      <span class="cal-head">Day</span>
+      <span class="cal-head">Format & Content</span>
+      <span class="cal-head">Strategic Reason</span>
+      <span class="cal-head">Primary Goal</span>
+      <span class="cal-head">Time</span>
+    </div>
+    <div class="cal-row">
+      <span class="cal-day">Day 1<br>Mon</span>
+      <div><span class="cal-format f-reel">Reel</span><div class="cal-title">"3 reasons your coffee tastes bad (and the fix)"</div><div class="cal-desc">Hook-led educational Reel. Quick-cut. Ends with a soft product mention.</div></div>
+      <div class="cal-desc">Monday = high-intent scroll day. Education stops thumbs better than promotion. Algorithm-friendly format with high save potential.</div>
+      <span class="cal-goal"><strong>Reach</strong>New audience via saves & shares</span>
+      <span class="cal-time">8:00 PM</span>
+    </div>
+    <div class="cal-row">
+      <span class="cal-day">Day 2<br>Tue</span>
+      <div><span class="cal-format f-carousel">Carousel</span><div class="cal-title">"The cold brew cheat sheet: ratios, steep time, storage"</div><div class="cal-desc">5-slide reference carousel. "Screenshot this" CTA. Directly useful for the target audience.</div></div>
+      <div class="cal-desc">Saves machine. Cold brew is one of the most searched coffee topics. This becomes a reference people return to again and again.</div>
+      <span class="cal-goal"><strong>Saves</strong>Algorithm boost from bookmarks</span>
+      <span class="cal-time">12:30 PM</span>
+    </div>
+    <div class="cal-row">
+      <span class="cal-day">Day 3<br>Wed</span>
+      <div><span class="cal-format f-static">Static</span><div class="cal-title">New Drop: Single-Origin Coorg Blend</div><div class="cal-desc">Clean product image, warm tones. Minimal text. "Now live — link in bio."</div></div>
+      <div class="cal-desc">Mid-week product post while audience attention is high. Not every post needs to educate — brand visibility is its own job.</div>
+      <span class="cal-goal"><strong>Conversion</strong>Traffic to product page</span>
+      <span class="cal-time">6:00 PM</span>
+    </div>
+    <div class="cal-row">
+      <span class="cal-day">Day 4<br>Thu</span>
+      <div><span class="cal-format f-story">Story Poll</span><div class="cal-title">"Are you a hot brew or cold brew person?" → product reveal</div><div class="cal-desc">Simple poll. Both answers lead to a relevant product recommendation and swipe-up.</div></div>
+      <div class="cal-desc">Stories drive DMs and swipe-ups more than feed posts. Polls signal to the algorithm that people are actively engaging with the content.</div>
+      <span class="cal-goal"><strong>Engagement</strong>Story views + swipe-ups</span>
+      <span class="cal-time">7:00 PM</span>
+    </div>
+    <div class="cal-row">
+      <span class="cal-day">Day 5<br>Fri</span>
+      <div><span class="cal-format f-reel">Reel</span><div class="cal-title">"My 6 AM coffee ritual (no alarm needed)" lifestyle Reel</div><div class="cal-desc">Slow, aesthetic, morning-mood Reel. No hard sell. Product visible in the ritual. Trending ambient audio.</div></div>
+      <div class="cal-desc">Friday = lifestyle consumption peak. People are in a good mood. Aspirational content that connects coffee to a feeling, not just a beverage.</div>
+      <span class="cal-goal"><strong>Brand Love</strong>Shares & comment sentiment</span>
+      <span class="cal-time">5:00 PM</span>
+    </div>
+    <div class="cal-row">
+      <span class="cal-day">Day 6<br>Sat</span>
+      <div><span class="cal-format f-carousel">Carousel</span><div class="cal-title">"5 Noise Coffee picks under ₹500 — the starter kit"</div><div class="cal-desc">Budget-conscious carousel. Real product images, prices, and direct links. "Screenshot before you forget" CTA.</div></div>
+      <div class="cal-desc">Weekends = shopping intent peaks. Budget-led content reaches a wider demographic. Saves + shares = algorithmic amplification that lasts all week.</div>
+      <span class="cal-goal"><strong>Saves + Sales</strong>Dual-purpose content</span>
+      <span class="cal-time">11:00 AM</span>
+    </div>
+    <div class="cal-row">
+      <span class="cal-day">Day 7<br>Sun</span>
+      <div><span class="cal-format f-static">UGC Repost</span><div class="cal-title">Customer photo — real mug, real moment, real caption</div><div class="cal-desc">Repost a tagged customer photo with permission. Unpolished. "This is why we do it." Short caption.</div></div>
+      <div class="cal-desc">UGC builds trust faster than any branded image. Sunday is low-stakes scroll time. Relatable > polished. Also incentivises other customers to tag the brand.</div>
+      <span class="cal-goal"><strong>Trust</strong>Social proof + community</span>
+      <span class="cal-time">3:00 PM</span>
+    </div>
+    <div class="cal-row">
+      <span class="cal-day">Day 8<br>Mon</span>
+      <div><span class="cal-format f-reel">Reel</span><div class="cal-title">"Why your Bru tastes different every time" satisfying explainer</div><div class="cal-desc">Educational with humour. "Your problem. Our solution." Format. Clean visuals, crisp cuts.</div></div>
+      <div class="cal-desc">Utility content that's genuinely entertaining. High share rate because it's the thing people forward to that one friend who's been complaining about their coffee.</div>
+      <span class="cal-goal"><strong>Reach</strong>Shares via utility + humour</span>
+      <span class="cal-time">8:00 PM</span>
+    </div>
+    <div class="cal-row">
+      <span class="cal-day">Day 9<br>Tue</span>
+      <div><span class="cal-format f-carousel">Carousel</span><div class="cal-title">"What your coffee order says about you"</div><div class="cal-desc">6 slides. Each order type + a playful personality profile. "Tag which one you are." Pure engagement play.</div></div>
+      <div class="cal-desc">Identity content performs above average every time. Comments and tags explode. Keeps audience relationship warm without a hard sell in sight.</div>
+      <span class="cal-goal"><strong>Engagement</strong>Comments + tags</span>
+      <span class="cal-time">12:00 PM</span>
+    </div>
+    <div class="cal-row">
+      <span class="cal-day">Day 10<br>Wed</span>
+      <div><span class="cal-format f-reel">Reel</span><div class="cal-title">"We read your comments. Here's what you asked for."</div><div class="cal-desc">Community-response content. Top 3 questions from the past 10 days answered in 60 seconds. New CTA at the end.</div></div>
+      <div class="cal-desc">Closing the loop builds loyalty. It signals that the brand actually reads comments — rare for consumer brands. Sets up the next cycle with a warm audience.</div>
+      <span class="cal-goal"><strong>Loyalty</strong>Community retention</span>
+      <span class="cal-time">7:00 PM</span>
+    </div>
+    </div>
+    </div>
+  </div>
+
+  <div class="content-block reveal">
+    <div class="block-tag">The Thinking Behind It</div>
+    <h2 class="block-title">Strategy <em>Notes</em></h2>
+    <div class="strat-grid">
+      <div class="strat-card">
+        <h4>Why these posting times?</h4>
+        <p>Indian Instagram audience peaks at 12–2 PM (lunch scroll) and 7–9 PM (post-dinner). Weekends shift earlier — 10 AM to 1 PM. Every post is aligned to the window that matches its content intent.</p>
+      </div>
+      <div class="strat-card">
+        <h4>Why this format mix?</h4>
+        <p>Reels drive reach. Carousels drive saves. Stories drive engagement. Statics maintain product presence. A healthy account uses all four — this plan rotates intentionally so the algorithm sees variety and the audience doesn't get bored.</p>
+      </div>
+      <div class="strat-card">
+        <h4>The saves obsession</h4>
+        <p>Saves are Instagram's highest-intent signal. Days 2, 6, and 9 are built specifically to be saved — cheat sheets, budget lists, and identity content. These compound in reach for days after posting.</p>
+      </div>
+      <div class="strat-card">
+        <h4>Sell vs. value ratio</h4>
+        <p>Only 3 of 10 posts are directly product-led. The other 7 build trust, provide value, or entertain. Audiences who trust you buy from you. Audiences who feel sold to unfollow you.</p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="back-cta">
+  <p>"Every post should have a job. If it doesn't, it's just noise."</p>
+  <a href="../index.html#projects" class="btn-gold">← See All Projects</a>
+</div>
+
+<script>
+function toggleMobile(){const m=document.getElementById('mobileMenu'),b=document.getElementById('hamburger');m.classList.toggle('open');b.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';}
+function closeMobile(){document.getElementById('mobileMenu').classList.remove('open');document.getElementById('hamburger').classList.remove('open');document.body.style.overflow='';}
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
