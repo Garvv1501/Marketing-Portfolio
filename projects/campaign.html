@@ -197,4 +197,90 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--cream);color:var(
         </div>
       </div>
       <div class="phase">
-        
+        <span class="phase-week">Week 2</span>
+        <div>
+          <div class="phase-name">Launch &amp; Creator Activation</div>
+          <div class="phase-desc">Full reveal — simultaneous drops on Instagram Reels, YouTube Shorts, and X. Activate 10–15 Indian micro-creators across music production, podcasting, and video niches. Each gets a creative brief, not a script. Their angle, their audience, their credibility.</div>
+        </div>
+      </div>
+      <div class="phase">
+        <span class="phase-week">Week 3</span>
+        <div>
+          <div class="phase-name">Community &amp; UGC Wave</div>
+          <div class="phase-desc">Launch the #MakeNoiseboAt challenge. Creators share their setups, gear, and "I recorded this in my bedroom" moments. Best UGC gets featured on the main account with full credit. Drive saves with a "Budget Creator Studio" carousel series running across the week.</div>
+        </div>
+      </div>
+      <div class="phase">
+        <span class="phase-week">Week 4</span>
+        <div>
+          <div class="phase-name">Convert &amp; Sustain</div>
+          <div class="phase-desc">Retargeting for engaged audiences. Push the "Creator Starter Kit" bundle with time-limited messaging. Full campaign debrief — which creator drove the most clicks, which format converted, and what the content system looks like for month two.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block reveal">
+    <div class="block-tag">Content Examples</div>
+    <h2 class="block-title">What We&apos;d <em>Actually Post</em></h2>
+    <div class="ideas">
+      <div class="idea">
+        <span class="idea-platform">Reel</span>
+        <div>
+          <h4>"This is my studio. Judging you for yours."</h4>
+          <p>30-second tour of a creator's bedroom setup — chaotic, real, no IKEA showroom energy. Product visible but not forced. High relatability and a share rate that does the distribution work.</p>
+        </div>
+      </div>
+      <div class="idea">
+        <span class="idea-platform">Carousel</span>
+        <div>
+          <h4>"Build your creator setup under ₹10,000"</h4>
+          <p>Six slides. Each slide is one product with a clear role in the setup. Educational, save-worthy, and directly shoppable. Ends with a "screenshot before you buy" call to action.</p>
+        </div>
+      </div>
+      <div class="idea">
+        <span class="idea-platform">X</span>
+        <div>
+          <h4>"Your voice is the product. Stop recording on your phone speaker."</h4>
+          <p>Direct, mildly confrontational, deeply shareable. Links to a product page. The replies and quote-tweets do the marketing from there.</p>
+        </div>
+      </div>
+      <div class="idea">
+        <span class="idea-platform">Story</span>
+        <div>
+          <h4>"What kind of creator are you?" quiz leading to a product recommendation</h4>
+          <p>Story quiz: Podcaster — Music Producer — Video Creator — Gamer. Each answer routes to the relevant boAt Studio product. Personalisation at zero marginal cost.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block reveal">
+    <div class="block-tag">Success Metrics</div>
+    <h2 class="block-title">How We&apos;d <em>Measure It</em></h2>
+    <div class="kpis">
+      <div class="kpi"><div class="kpi-val">6%+</div><div class="kpi-lbl">Target Engagement Rate</div></div>
+      <div class="kpi"><div class="kpi-val">3M+</div><div class="kpi-lbl">Organic Reel Views</div></div>
+      <div class="kpi"><div class="kpi-val">1,000+</div><div class="kpi-lbl">UGC Posts</div></div>
+      <div class="kpi"><div class="kpi-val">40%</div><div class="kpi-lbl">Follower Growth Target</div></div>
+    </div>
+    <div class="body-text">
+      <p>Vanity metrics are the starting point, not the endpoint. The real KPI is <strong>click-through from social to the boAt Studio product pages</strong> and conversion rate on the Creator Starter Kit bundle. We track what drives revenue — not just what drives applause. Every asset gets tagged and traced back to an outcome.</p>
+    </div>
+  </div>
+
+</main>
+
+<div class="back-cta">
+  <p>"Great campaigns don't just sell products — they give people an identity."</p>
+  <a href="../index.html#projects" class="btn-gold">← See All Projects</a>
+</div>
+
+<script>
+function toggleMobile(){const m=document.getElementById('mobileMenu'),b=document.getElementById('hamburger');m.classList.toggle('open');b.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';}
+function closeMobile(){document.getElementById('mobileMenu').classList.remove('open');document.getElementById('hamburger').classList.remove('open');document.body.style.overflow='';}
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
